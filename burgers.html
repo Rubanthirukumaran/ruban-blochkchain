@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burgers Menu</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.2.7-rc.0/web3.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .burger-section {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 20px;
+            max-width: 300px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .burger-section:hover {
+            transform: translateY(-5px);
+        }
+
+        .burger-section img {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .burger-section h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .burger-section p {
+            font-size: 18px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .button-container button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 20px;
+            padding: 12px 24px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin: 10px;
+        }
+
+        .button-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .button-container p {
+            font-size: 16px;
+            color: #666;
+            margin-top: 10px;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .button-container input {
+            width: 100%;
+            max-width: 300px;
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Welcome to Our Burger Paradise!</h1>
+
+    <div class="burger-section">
+        <img src="burger1.jpg" alt="Classic Burger">
+        <h2>Classic Burgers</h2>
+        <p>Our classic burgers are made with juicy beef patties, fresh lettuce, tomatoes, onions, pickles, and our special sauce, all served on a soft sesame seed bun.</p>
+    </div>
+
+    <div class="burger-section">
+        <img src="burger2.jpg" alt="Cheeseburgers">
+        <h2>Cheeseburgers</h2>
+        <p>Indulge in the gooey goodness of our cheeseburgers! Made with the same classic ingredients as our burgers, plus your choice of cheddar, Swiss, or American cheese.</p>
+    </div>
+
+    <div class="burger-section">
+        <img src="burger3.jpg" alt="Veggie Burgers">
+        <h2>Veggie Burgers</h2>
+        <p>For our vegetarian friends, we offer delicious veggie burgers made with a savory blend of black beans, quinoa, and spices, served with lettuce, tomatoes, onions, and our house-made vegan mayo.</p>
+    </div>
+    <br>
+    <div>
+        <button onclick="connectMetamask()">CONNECT TO METAMASK</button><br>
+        <p>Connect to your wallet to make payment</p>
+        <p id="userArea">Status: Not connected to Metamask</p><br>
+    </div>
+    <br>
+    <div>
+        <button onclick="connectContract()">CONNECT TO CONTRACT</button><br>
+        <p>Connect to contract</p>
+        <p id="contractArea">Status: Not connected to Contract</p><br>
+    </div>
+    <br>
+    <div>
+        <button onclick="getContractAccount()">GET CONTRACT ACCOUNT</button><br>
+        <p>Connect to contract a</p>
+        <p id="contractAccount">Contract Account: Not Connected to Contract</p><br>
+    </div>
+        
+    <br>
+    <div>
+        <button onclick="getBalanceApple()">GET BALANCE OF THE CONTRACT</button><br>
+        <p>Customers can use the "Check Contract Balance" button to view the current balance of the smart contract. This transparency allows customers to verify that their deposited funds are safe and secure within the contract.</p>
+        <p id="balanceArea">Balance: Not Connected to Contract</p><br>
+    </div>
+    <br>
+    <div>
+        <button onclick="depositContract()">Send ether to the Contract</button><br>
+        <p>Customers can use the "Deposit Funds" button to add cryptocurrency to their account on your website. This deposited amount can be used for purchasing burgers or other items from your menu.</p>
+        <input type="number" id="depositInput" placeholder="Enter Amount"><br> <br>
+    </div>
+    <br>
+    <div>
+        <button onclick="withdraw()">WITHDRAW ETHER TO ANY ADDRESS</button> <br>
+        <p>If customers have unused funds in their account, they can withdraw them using the "Withdraw Funds" button. This feature ensures that customers have control over their funds and can withdraw them at any time.</p>
+        <input type="text" id="addressInput" placeholder="Enter Address"> <br>
+        <input type="number" id="amountInput" placeholder="Enter Amount"> <br>
+    </div>
+
+    <div>
+        <!-- Add input fields to allow users to add or update menu items -->
+        <input type="text" id="itemNameInput" placeholder="Enter Item Name">
+        <input type="number" id="itemPriceInput" placeholder="Enter Item Price">
+        <button onclick="addMenuItem()">Add Menu Item</button>
+        <br>
+        <br>
+        <!-- Display the number of items in the menu -->
+
+    </div>
+
+    <div>
+        <div>
+            <button onclick="getMenuLength()">Get Menu Length</button><br>
+            <p id="menuLength">Number of Items in Menu: </p><br>
+        </div>
+        
+    </div>
+    
+</div>
+
+<script>
+    // Your JavaScript code here
+    
+    let account;
+
+    // Function to request account access from MetaMask
+    const requestAccount = async () => {
+        await ethereum.request({ method: "eth_requestAccounts" });
+    }
+
+    // Function to connect to MetaMask
+    const connectMetamask = async () => {
+        if (window.ethereum !== "undefined") {
+            await requestAccount();
+            const accounts = await ethereum.request({ method: "eth_accounts" });
+            account = accounts[0];
+            document.getElementById("userArea").innerHTML = `User Account: ${account}`;
+        }
+    }
+
+    // Function to connect to the smart contract
+    const connectContract = async () => {
+        const ABI = [
+        {
+            "inputs": [
+                {
+                    "internalType": "string",
+                    "name": "_name",
+                    "type": "string"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "_price",
+                    "type": "uint256"
+                }
+            ],
+            "name": "addMenuItem",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "deposit",
+            "outputs": [],
+            "stateMutability": "payable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address payable",
+                    "name": "_to",
+                    "type": "address"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "_amount",
+                    "type": "uint256"
+                }
+            ],
+            "name": "withdraw",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "getAddress",
+            "outputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "getBalance",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "getMenuLength",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "name": "menu",
+            "outputs": [
+                {
+                    "internalType": "string",
+                    "name": "name",
+                    "type": "string"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "price",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        }
+    ];
+        const Address = "0x6af208540fbb67a535ff68192cce1ace98381214"; // Assuming this is your contract address
+        window.web3 = new Web3(window.ethereum);
+        window.contract = new window.web3.eth.Contract(ABI, Address);
+        document.getElementById("contractArea").innerHTML = "Connected to Contract";
+    }
+
+    // Function to add a new menu item
+    const addMenuItem = async () => {
+        const itemName = document.getElementById("itemNameInput").value;
+        const itemPrice = document.getElementById("itemPriceInput").value;
+        
+        // Check if input fields are not empty
+        if (!itemName || !itemPrice) {
+            alert("Please enter both item name and price");
+            return;
+        }
+    
+        // Convert the price to wei (assuming it's in ether)
+        const priceWei = window.web3.utils.toWei(itemPrice, 'ether');
+    
+        try {
+            await window.contract.methods.addMenuItem(itemName, priceWei).send({ from: account });
+            alert("Menu item added successfully!");
+        } catch (error) {
+            console.error("Error adding menu item:", error);
+            alert("Failed to add menu item. Please try again.");
+        }
+    }
+
+    // Function to get the number of items in the menu
+const getMenuLength = async () => {
+    try {
+        const length = await window.contract.methods.getMenuLength().call();
+        document.getElementById("menuLength").innerHTML = `Number of Items in Menu: ${length}`;
+    } catch (error) {
+        console.error("Error getting menu length:", error);
+        alert("Failed to get menu length. Please try again.");
+    }
+}
+
+
+    // Function to get the contract account address
+    const getContractAccount = async () => {
+        const data = await window.contract.methods.getAddress().call();
+        document.getElementById("contractAccount").innerHTML = `Contract Account: ${data}`;
+    }
+
+    // Function to get the contract balance
+    const getBalanceApple = async () => {
+        const data = await window.contract.methods.getBalance().call();
+        document.getElementById("balanceArea").innerHTML = `Contract Balance: ${data}`;
+    }
+
+    // Function to deposit ether into the contract
+    const depositContract = async () => {
+        const amount = document.getElementById("depositInput").value;
+        await window.contract.methods.deposit().send({ from: account, value: amount });
+    }
+
+    // Function to withdraw ether from the contract
+    const withdraw = async () => {
+        const amount = document.getElementById("amountInput").value;
+        const address = document.getElementById("addressInput").value;
+        await window.contract.methods.withdraw(address, amount).send({ from: account });
+    }
+    
+    // Event listener to execute when the DOM content is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        // Burger images URLs
+        const burgerImages = [
+            'burger1.jpg', // Image URL for Classic Burger
+            'burger2.jpg', // Image URL for Cheeseburger
+            'burger3.jpg'  // Image URL for Veggie Burger
+        ];
+    
+        // Dynamically add burger images to each section
+        const sections = document.querySelectorAll('.burger-section');
+        sections.forEach((section, index) => {
+            const image = document.createElement('img');
+            image.src = burgerImages[index];
+            image.alt = 'Burger';
+            image.style.maxWidth = '100%';
+            image.style.height = 'auto';
+            section.insertBefore(image, section.firstChild);
+        });
+    });
+</script>
+
+
+</body>
+</html>
