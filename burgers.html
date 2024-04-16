@@ -102,97 +102,122 @@
 </head>
 <body>
 
-<div class="container">
-    <h1>Welcome to Our Burger Paradise!</h1>
 
-    <div class="burger-section">
-        <img src="burger1.jpg" alt="Classic Burger">
-        <h2>Classic Burgers</h2>
-        <p>Our classic burgers are made with juicy beef patties, fresh lettuce, tomatoes, onions, pickles, and our special sauce, all served on a soft sesame seed bun.</p>
-    </div>
-
-    <div class="burger-section">
-        <img src="burger2.jpg" alt="Cheeseburgers">
-        <h2>Cheeseburgers</h2>
-        <p>Indulge in the gooey goodness of our cheeseburgers! Made with the same classic ingredients as our burgers, plus your choice of cheddar, Swiss, or American cheese.</p>
-    </div>
-
-    <div class="burger-section">
-        <img src="burger3.jpg" alt="Veggie Burgers">
-        <h2>Veggie Burgers</h2>
-        <p>For our vegetarian friends, we offer delicious veggie burgers made with a savory blend of black beans, quinoa, and spices, served with lettuce, tomatoes, onions, and our house-made vegan mayo.</p>
-    </div>
-    <br>
-    <div>
-        <button onclick="connectMetamask()">CONNECT TO METAMASK</button><br>
-        <p>Connect to your wallet to make payment</p>
-        <p id="userArea">Status: Not connected to Metamask</p><br>
-    </div>
-    <br>
-    <div>
-        <button onclick="connectContract()">CONNECT TO CONTRACT</button><br>
-        <p>Connect to contract</p>
-        <p id="contractArea">Status: Not connected to Contract</p><br>
-    </div>
-    <br>
-    <div>
-        <button onclick="getContractAccount()">GET CONTRACT ACCOUNT</button><br>
-        <p>Connect to contract a</p>
-        <p id="contractAccount">Contract Account: Not Connected to Contract</p><br>
-    </div>
-        
-    <br>
-    <div>
-        <button onclick="getBalanceApple()">GET BALANCE OF THE CONTRACT</button><br>
-        <p>Customers can use the "Check Contract Balance" button to view the current balance of the smart contract. This transparency allows customers to verify that their deposited funds are safe and secure within the contract.</p>
-        <p id="balanceArea">Balance: Not Connected to Contract</p><br>
-    </div>
-    <br>
-    <div>
-        <button onclick="depositContract()">Send ether to the Contract</button><br>
-        <p>Customers can use the "Deposit Funds" button to add cryptocurrency to their account on your website. This deposited amount can be used for purchasing burgers or other items from your menu.</p>
-        <input type="number" id="depositInput" placeholder="Enter Amount"><br> <br>
-    </div>
-    <br>
-    <div>
-        <button onclick="withdraw()">WITHDRAW ETHER TO ANY ADDRESS</button> <br>
-        <p>If customers have unused funds in their account, they can withdraw them using the "Withdraw Funds" button. This feature ensures that customers have control over their funds and can withdraw them at any time.</p>
-        <input type="text" id="addressInput" placeholder="Enter Address"> <br>
-        <input type="number" id="amountInput" placeholder="Enter Amount"> <br>
-    </div>
-
-    <div>
-        <!-- Add input fields to allow users to add or update menu items -->
-        <input type="text" id="itemNameInput" placeholder="Enter Item Name">
-        <input type="number" id="itemPriceInput" placeholder="Enter Item Price">
-        <button onclick="addMenuItem()">Add Menu Item</button>
-        <br>
-        <br>
-        <!-- Display the number of items in the menu -->
-
-    </div>
-
-    <div>
-        <div>
-            <button onclick="getMenuLength()">Get Menu Length</button><br>
-            <p id="menuLength">Number of Items in Menu: </p><br>
-        </div>
-        
-    </div>
+    <div class="container">
+        <h1>Welcome to Our Burger Paradise!</h1>
     
-</div>
+        <div class="burger-section" id="joke-section">
+            <h2>Burger Paradise Joke Corner</h2>
+            <h3>Laugh out loud with our Burger Paradise jokes and enjoy your burger!</h3>
+            <p id="joke"></p>
+            <button onclick="getChuckNorrisJoke()">Get Joke</button>
+        </div>
+    
+        <div class="burger-section">
+            <img src="burger1.jpg" alt="Classic Burger">
+            <h2>Classic Burgers</h2>  
+            <p>Our classic burgers are made with juicy beef patties, fresh lettuce, tomatoes, onions, pickles, and our special sauce, all served on a soft sesame seed bun.</p>
+            <ol>
+                <li>Classic Burger</li>
+                <li>Big Mac</li>
+                <li>Quarter Pounder</li>
+            </ol>
+        </div>
+    
+        <div class="burger-section">
+            <img src="burger2.jpg" alt="Cheeseburgers">
+            <h2>Cheeseburgers</h2>
+            <p>Indulge in the gooey goodness of our cheeseburgers! Made with the same classic ingredients as our burgers, plus your choice of cheddar, Swiss, or American cheese.</p>
+            <ol>
+                <li>Cheeseburger</li>
+                <li>Double Cheeseburger</li>
+                <li>Bacon Cheeseburger</li>
+            </ol>
+        </div>
+    
+        <div class="burger-section">
+            <img src="burger3.jpg" alt="Veggie Burgers">
+            <h2>Veggie Burgers</h2>
+            <p>For our vegetarian friends, we offer delicious veggie burgers made with a savory blend of black beans, quinoa, and spices, served with lettuce, tomatoes, onions, and our house-made vegan mayo.</p>
+            <ol>
+                <li>Black Bean Burger</li>
+                <li>Mushroom Burger</li>
+                <li>Quinoa Burger</li>
+            </ol>
+        </div>
+    
+        <div>
+            <button onclick="connectMetamask()">CONNECT TO METAMASK</button><br>
+            <p id="userArea">Status: Not connected to Metamask</p><br>
+        </div>
+    
+        <div>
+            <button onclick="connectContract()">CONNECT TO CONTRACT TO MAKE DEPOSIT AND ORDER BURGER</button><br>
+            <p id="contractArea">Status: Not connected to Contract</p><br>
+        </div>
+
+         <div>
+            <button onclick="getContractAccount()">GET CONTRACT ACCOUNT</button><br>
+            <p id="contractAccount">Contract Account: Not Connected to Contract</p><br>
+        </div>
+
+        <div>
+            <p>Customers can use the "Deposit Funds" button to add cryptocurrency to their account. This deposited amount can be used for purchasing burgers or other items from your menu.</p>
+            <input type="number" id="depositInput" placeholder="Enter Amount">
+            <button onclick="depositContract()">Send ether to the Contract</button>
+        </div>
+    
+        <div>
+            <input type="text" id="itemNameInput" placeholder="Enter Burger Name">
+            <input type="number" id="itemPriceInput" placeholder="Enter Burger Price">
+            <button onclick="addMenuItem()">Add Menu Item</button>
+        </div>
+        <br>
+        <div>
+            <button onclick="getMenuLength()">Get Menu Length</button>
+            <p id="menuLength">Status: Number of items you ordered</p>
+        </div>
+        <br>
+            
+        <div>
+            <p>Customers can use the "Check Contract Balance" button to view the current balance of the smart contract. This transparency allows customers to verify that their deposited funds are safe and secure within the contract.</p>
+            <button onclick="getBalanceApple()">GET BALANCE OF THE CONTRACT</button>
+            <p id="balanceArea">Balance: Not Connected to Contract</p>
+        </div>
+    
+        <div>
+            <p>If customers have unused funds in their account, they can withdraw them using the "Withdraw Funds" button. This feature ensures that customers have control over their funds and can withdraw them at any time.</p>
+            <button onclick="withdraw()">WITHDRAW ETHER TO ANY ADDRESS</button> <br>
+            <input type="text" id="addressInput" placeholder="Enter Address"> <br>
+            <input type="number" id="amountInput" placeholder="Enter Amount"> <br>
+        </div>
+    </div>
 
 <script>
-    // Your JavaScript code here
+
+
     
     let account;
 
-    // Function to request account access from MetaMask
+  
+
+async function getChuckNorrisJoke() {
+    try {
+        const response = await fetch('https://api.chucknorris.io/jokes/random');
+        const jokeData = await response.json();
+        document.getElementById('joke').innerText = jokeData.value;
+    } catch (error) {
+        console.error('Error fetching Chuck Norris joke:', error);
+    }
+}
+
+
+
+
     const requestAccount = async () => {
         await ethereum.request({ method: "eth_requestAccounts" });
     }
 
-    // Function to connect to MetaMask
     const connectMetamask = async () => {
         if (window.ethereum !== "undefined") {
             await requestAccount();
@@ -202,7 +227,6 @@
         }
     }
 
-    // Function to connect to the smart contract
     const connectContract = async () => {
         const ABI = [
         {
@@ -312,24 +336,24 @@
             "type": "function"
         }
     ];
-        const Address = "0x6af208540fbb67a535ff68192cce1ace98381214"; // Assuming this is your contract address
+        const Address = "0x362ae19140845e0c9ac94d9d198c51cd2b517539"; 
         window.web3 = new Web3(window.ethereum);
         window.contract = new window.web3.eth.Contract(ABI, Address);
         document.getElementById("contractArea").innerHTML = "Connected to Contract";
     }
 
-    // Function to add a new menu item
+    
     const addMenuItem = async () => {
         const itemName = document.getElementById("itemNameInput").value;
         const itemPrice = document.getElementById("itemPriceInput").value;
         
-        // Check if input fields are not empty
+        
         if (!itemName || !itemPrice) {
             alert("Please enter both item name and price");
             return;
         }
     
-        // Convert the price to wei (assuming it's in ether)
+        
         const priceWei = window.web3.utils.toWei(itemPrice, 'ether');
     
         try {
@@ -341,7 +365,7 @@
         }
     }
 
-    // Function to get the number of items in the menu
+    
 const getMenuLength = async () => {
     try {
         const length = await window.contract.methods.getMenuLength().call();
@@ -352,52 +376,55 @@ const getMenuLength = async () => {
     }
 }
 
-
-    // Function to get the contract account address
+    
     const getContractAccount = async () => {
         const data = await window.contract.methods.getAddress().call();
         document.getElementById("contractAccount").innerHTML = `Contract Account: ${data}`;
     }
 
-    // Function to get the contract balance
+    
     const getBalanceApple = async () => {
         const data = await window.contract.methods.getBalance().call();
         document.getElementById("balanceArea").innerHTML = `Contract Balance: ${data}`;
     }
 
-    // Function to deposit ether into the contract
+    
     const depositContract = async () => {
         const amount = document.getElementById("depositInput").value;
         await window.contract.methods.deposit().send({ from: account, value: amount });
     }
 
-    // Function to withdraw ether from the contract
+    
     const withdraw = async () => {
         const amount = document.getElementById("amountInput").value;
         const address = document.getElementById("addressInput").value;
         await window.contract.methods.withdraw(address, amount).send({ from: account });
     }
+
     
-    // Event listener to execute when the DOM content is loaded
-    document.addEventListener('DOMContentLoaded', function() {
-        // Burger images URLs
-        const burgerImages = [
-            'burger1.jpg', // Image URL for Classic Burger
-            'burger2.jpg', // Image URL for Cheeseburger
-            'burger3.jpg'  // Image URL for Veggie Burger
-        ];
     
-        // Dynamically add burger images to each section
-        const sections = document.querySelectorAll('.burger-section');
-        sections.forEach((section, index) => {
-            const image = document.createElement('img');
-            image.src = burgerImages[index];
-            image.alt = 'Burger';
-            image.style.maxWidth = '100%';
-            image.style.height = 'auto';
-            section.insertBefore(image, section.firstChild);
-        });
+document.addEventListener('DOMContentLoaded', function() {
+
+    const burgerImages = [
+        'burger1.jpg', 
+        'burger2.jpg', 
+        'burger3.jpg'  
+    ];
+
+    
+    const sections = document.querySelectorAll('.burger-section');
+    sections.forEach((section, index) => {
+        const image = document.createElement('img');
+        image.src = burgerImages[index];
+        image.alt = 'Burger';
+        image.style.maxWidth = '100%';
+        image.style.height = 'auto';
+        
+        
+        section.insertBefore(image, section.querySelector('h2').nextSibling);
     });
+});
+
 </script>
 
 

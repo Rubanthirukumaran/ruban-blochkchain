@@ -25,15 +25,15 @@ contract Transactions {
         string name;
         uint price;
     }
-    
+
+     // below are new smart contracts functions added relevent to application
+     
     MenuItem[] public menu;
 
-    // Add a new menu item
+    
     function addMenuItem(string memory _name, uint _price) external {
         menu.push(MenuItem(_name, _price));
-    }
-
-    // Get the number of items in the menu
+    
     function getMenuLength() external view returns(uint) {
         return menu.length;
     }

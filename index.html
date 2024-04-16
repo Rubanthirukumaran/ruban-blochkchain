@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PayApp 12.07</title>
+    <title>Burger Paradise!</title>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.2.7-rc.0/web3.min.js"></script>
     <style>
         body {
@@ -27,61 +27,90 @@
         }
 
         .marketing-section h2 {
-            font-size: 24px;
-            margin-bottom: 10px;
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #333;
         }
 
         .marketing-section p {
-            font-size: 18px;
+            font-size: 20px;
             color: #555;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            line-height: 1.6;
         }
 
         .marketing-section img {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
 
         .marketing-section button {
-            background-color: #4CAF50;
+            background-color: #ff6347;
             color: #fff;
             border: none;
-            padding: 10px 20px;
-            font-size: 18px;
-            border-radius: 5px;
+            padding: 15px 30px;
+            font-size: 24px;
+            border-radius: 8px;
             cursor: pointer;
             transition: background-color 0.3s;
         }
 
         .marketing-section button:hover {
-            background-color: #45a049;
+            background-color: #ff3b20;
+        }
+
+        .discount-section {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+
+        .discount-section h3 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .discount-section p {
+            font-size: 18px;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .discount-section .highlight {
+            font-weight: bold;
+            color: #ff6347;
         }
     </style>
 </head>
 <body>
 
-<!-- Burger website marketing section -->
 <div class="marketing-section">
-    <h2>Delicious Burgers Await You!</h2>
-    <p>Experience the taste of perfection with our mouth-watering burgers.</p>
+    <h2>Welcome to Burger Paradise!</h2>
+    <p>Indulge in the ultimate burger experience at Burger Delight. Our carefully crafted burgers are bursting with flavor and made with only the freshest ingredients.</p>
     <img src="burger1.jpg" alt="Burger">
-    <p>Visit our website to explore our menu and place your order now!</p>
-    <button onclick="window.open('burgers.html', '_blank');">Visit Website</button>
+    <p>Explore our mouth-watering menu and place your order now to satisfy your cravings!</p>
+    <button onclick="window.open('burgers.html', '_blank');">Explore Menu</button>
+</div>
+
+<div class="discount-section">
+    <h3>Special Discounts Await You!</h3>
+    <p>Enjoy <span class="highlight">20% off</span> on all orders placed through our website this weekend. Don't miss out on this incredible offer to treat yourself to delicious burgers at unbeatable prices!</p>
+    <p>Hurry, the offer is valid for a limited time only. Order now and indulge in burger bliss!</p>
 </div>
 
 <script>
     document.getElementById('visitWebsiteBtn').addEventListener('click', function() {
-        // Dynamically load burgers.html and append its content to the DOM
         fetch('burgers.html')
             .then(response => response.text())
             .then(html => {
-                // Create a new div element and set its innerHTML to the content of burgers.html
                 const newPage = document.createElement('div');
                 newPage.innerHTML = html;
 
-                // Append the new page content to the body
                 document.body.appendChild(newPage);
             })
             .catch(error => console.error('Error fetching burgers.html:', error));
@@ -90,3 +119,6 @@
 
 </body>
 </html>
+
+
+
